@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="left-side">
+            <h1>Budget Calculator</h1>
+            
+            <form id="budget-form">
+                <div class="input-group">
+                    <label for="salary">Monthly Salary:</label>
+                    <input type="number" id="salary" placeholder="Enter your salary" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="mode">Select Mode:</label>
+                    <select id="mode" onchange="updateMode()">
+                        <option value="default">50/30/20 Rule</option>
+                        <option value="manual">Manual Input</option>
+                    </select>
+                </div>
+
+                <div id="default-categories" class="category-group">
+                    <h3>50/30/20 Rule</h3>
+                    <ul>
+                        <li>Needs: <strong>50%</strong></li>
+                        <li>Wants: <strong>30%</strong></li>
+                        <li>Savings: <strong>20%</strong></li>
+                    </ul>
+                </div>
+
+                <div id="manual-categories" class="category-group" style="display: none;">
+                    <button type="button" class="add-button" onclick="openAddCategoryModal()">Add Category</button>
+                    <table id="category-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Percentage</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="category-list">
+                            <!-- Custom categories will be listed here -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <button type="button" class="calculate-button" onclick="calculateBudget()">Calculate</button>
+                <button id="reset-button" class="btn reset-button">Reset All</button>
+            </form>
+        </div>
+
+        <div class="right-side">
+            <div id="results">
+                <!-- Dynamic budget allocation results will be displayed here -->
+            </div>
+            <canvas id="budgetChart"></canvas>
+        </div>
+    </div>
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="script.js"></script>
+</body>
+</html>
